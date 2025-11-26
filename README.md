@@ -282,7 +282,7 @@ docker run -p 8000:8000 --env-file .env agentx
 ```env
 DEBUG=False
 LOG_LEVEL=WARNING
-MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/agentx
+MONGODB_URI=mongodb+srv://user:*******r.mongodb.net/agentx
 REDIS_HOST=redis.cloud.com
 ```
 
