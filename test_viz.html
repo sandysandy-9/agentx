@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AgentX Test - Visualization</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Visualization Test</h1>
+    <button onclick="testViz()">Test Bar Chart</button>
+    <div id="output"></div>
+    
+    <script>
+        async function testViz() {
+            const output = document.getElementById('output');
+            output.innerHTML = 'Sending request...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: 'show me a bar chart of sales data',
+                        user_id: 'test',
+                        session_id: 'viz_test_' + Date.now()
+                    })
+                });
+                
+                const data = await response.json();
+                output.innerHTML = '<h2>Response:</h2><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                output.innerHTML += '<div>' + data.response + '</div>';
+                
+            } catch (error) {
+                output.innerHTML = '<p style="color:red">Error: ' + error.message + '</p>';
+            }
+        }
+    </script>
+</body>
+</html>
